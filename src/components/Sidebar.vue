@@ -23,9 +23,25 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="sidebar-container" :class="!isSidebarOpen ? '!hidden' : ''">
+  <div
+    class="sidebar-container"
+    @click.self="toggleSidebar"
+    :class="!isSidebarOpen ? '!hidden' : ''"
+  >
     <div class="sidebar">
-      <!-- Conteúdo do menu -->
+      <nav class="flex-1">
+        <ul class="space-y-1 py-2">
+          <li>
+            <a href="#" class="link_anchor"> Início </a>
+          </li>
+          <li>
+            <a href="#" class="link_anchor"> Perfil </a>
+          </li>
+          <li>
+            <a href="#" class="link_anchor"> Configurações </a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </div>
   <button @click="toggleSidebar" class="sidebar-toggle">
@@ -35,15 +51,19 @@ export default defineComponent({
 
 <style>
 .sidebar-container {
-  @apply fixed top-0 left-0 bottom-0 right-0 flex;
+  @apply fixed top-0 left-0 bottom-0 right-0 z-20 flex;
 }
 
 .sidebar {
-  @apply h-full w-56 overflow-auto bg-gray-100 p-4;
+  @apply h-full w-56 overflow-auto bg-gray-100;
 }
 
 .sidebar-toggle {
   /* @apply absolute top-4 right-4 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-gray-800 text-white; */
   @apply fixed bottom-4 right-4 flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-gray-800 p-2 text-white;
+}
+
+.link_anchor {
+  @apply block bg-green-600 px-2 py-1 text-gray-800 hover:bg-gray-200;
 }
 </style>

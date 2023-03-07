@@ -17,7 +17,7 @@ export default defineComponent({
 
 <template>
   <div class="container mx-auto max-w-2xl p-4">
-    <div>
+    <div v-for="i in [...new Array(100)]">
       <h3 class="mt-4 text-2xl font-bold">Significado e definição:</h3>
       <MeanigList mean="{response}" />
       <h3 class="mt-4 text-2xl font-bold">Exemplo:</h3>

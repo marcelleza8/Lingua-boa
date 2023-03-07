@@ -13,5 +13,7 @@ export default defineComponent({
 <template>
   <Sidebar />
   <Header />
-  <ResultList />
+  <div class="pt-10">
+    <ResultList />
+  </div>
 </template>

@@ -23,7 +23,7 @@ export default defineComponent({
   <div class="bg-gray-700">
     <div class="container mx-auto py-8">
       <h1 class="text-center text-3xl font-bold text-white">
-        Dicionário de Nheengatú
+        Exemplo de Tailwind
       </h1>
       <p class="mt-1 mb-10 text-center text-lg text-slate-300">
         Busque por palavras
@@ -34,7 +34,7 @@ export default defineComponent({
           <input
             class="px-4 py-2 md:w-80"
             type="text"
-            placeholder="Perquisar..."
+            placeholder="Pesquisar..."
             @change="handleInputChange"
             :value="value"
             @keydown="handleInputKeyDown"
@@ -43,7 +43,7 @@ export default defineComponent({
             class="border-l bg-blue-400 px-4 py-2 text-white"
             @click="handleSubmit"
           >
-            Perquisar
+            Pesquisar
           </button>
         </div>
       </div>

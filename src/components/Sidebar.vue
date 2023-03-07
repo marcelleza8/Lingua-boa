@@ -1,10 +1,11 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
+import MenuDistro from "./Icons/MenuDistro.vue";
 
 export default defineComponent({
   name: "Sidebar",
   setup() {
-    const isSidebarOpen = ref(true);
+    const isSidebarOpen = ref(false);
 
     const toggleSidebar = () => {
       isSidebarOpen.value = !isSidebarOpen.value;
@@ -14,6 +15,9 @@ export default defineComponent({
       isSidebarOpen,
       toggleSidebar,
     };
+  },
+  components: {
+    MenuDistro,
   },
 });
 </script>
@@ -25,7 +29,7 @@ export default defineComponent({
     </div>
   </div>
   <button @click="toggleSidebar" class="sidebar-toggle">
-    {{ isSidebarOpen ? "Ocultar" : "Mostrar" }}
+    <MenuDistro />
   </button>
 </template>
 
@@ -39,6 +43,7 @@ export default defineComponent({
 }
 
 .sidebar-toggle {
-  @apply absolute top-4 right-4 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-gray-800 text-white;
+  /* @apply absolute top-4 right-4 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-gray-800 text-white; */
+  @apply fixed bottom-4 right-4 flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-gray-800 p-2 text-white;
 }
 </style>

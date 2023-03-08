@@ -21,9 +21,7 @@ import { defineComponent, onMounted } from "vue";
 export default defineComponent({
   name: "MenuDistro",
   setup(props) {
-    onMounted(() => {
-      console.log(props.color);
-    });
+    onMounted(() => {});
   },
   props: {
     color: {

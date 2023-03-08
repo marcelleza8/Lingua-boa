@@ -46,7 +46,7 @@ export default defineComponent({
       <tbody>
         <tr v-for="item in dicionario" :key="item.id">
           <td>{{ item.palavra }}</td>
-          <td>{{ item.significado }}</td>
+          <td>{{ item.significados }}</td>
           <td>
             <button>Ed</button>
           </td>

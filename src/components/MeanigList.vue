@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div>
+    <ul>
       <li>def.definition</li>
       <hr />
-    </div>
+    </ul>
   </div>
 </template>

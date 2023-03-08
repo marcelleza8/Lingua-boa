@@ -7,6 +7,11 @@ const router = createRouter({
             path: '/',
             name:"home",
             component: () => import('../pages/HomePage.vue')
+        },
+        {
+            path: '/editor-dicionario',
+            name: 'editor-dicionario',
+            component: () => import('../pages/EditorDicionarioPage.vue')
         }
     ]
 });

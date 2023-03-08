@@ -1,5 +1,6 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
+import { RouterLink } from "vue-router";
 import MenuDistro from "./Icons/MenuDistro.vue";
 
 export default defineComponent({
@@ -18,6 +19,7 @@ export default defineComponent({
   },
   components: {
     MenuDistro,
+    RouterLink,
   },
 });
 </script>
@@ -32,10 +34,14 @@ export default defineComponent({
       <nav class="flex-1">
         <ul class="space-y-1 py-2">
           <li>
-            <a href="#" class="link_anchor"> Início </a>
+            <RouterLink class="link_anchor" :to="{ name: 'home' }"
+              >Início</RouterLink
+            >
           </li>
           <li>
-            <a href="#" class="link_anchor"> Perfil </a>
+            <RouterLink class="link_anchor" :to="{ name: 'editor-dicionario' }"
+              >Editor de dicionário</RouterLink
+            >
           </li>
           <li>
             <a href="#" class="link_anchor"> Configurações </a>

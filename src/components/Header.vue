@@ -20,7 +20,7 @@ export default defineComponent({
 });
 </script>
 <template>
-  <div class="w-100 absolute top-4 z-10 px-2">
+  <div class="w-100 absolute inset-x-0 top-4 z-10 px-2 text-center">
     <input
       class="px-4 py-2 md:w-80"
       type="text"
@@ -30,7 +30,7 @@ export default defineComponent({
       @keydown="handleInputKeyDown"
     />
     <button
-      class="border-l bg-blue-400 px-4 py-2 text-white"
+      class="border-l bg-suikiri-700 px-4 py-2 text-white"
       @click="handleSubmit"
     >
       Pesquisar

@@ -39,14 +39,20 @@ export default defineComponent({
       <thead>
         <tr>
           <th class="px-4 py-2">Palavra</th>
-          <th class="px-4 py-2">Significado</th>
+          <th class="px-4 py-2">Significados</th>
           <th></th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="item in dicionario" :key="item.id">
           <td>{{ item.palavra }}</td>
-          <td>{{ item.significados }}</td>
+          <td>
+            <span
+              class="rounded bg-slate-100 px-2 py-1"
+              v-for="significado in item.significados"
+              >{{ significado }}</span
+            >
+          </td>
           <td>
             <button>Ed</button>
           </td>

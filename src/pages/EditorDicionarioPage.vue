@@ -2,15 +2,25 @@
 import { defineComponent, ref, computed } from "vue";
 import Form from "../components/Formularios/Form.vue";
 import InputText from "../components/Formularios/InputText.vue";
+import { Definicao } from "../types/Definicao";
+
 import { saveAs } from "file-saver";
 
 import dicionario_data from "../data/dicionario_nheengatu.js";
 export default defineComponent({
   name: "EditorDicionárioPage",
   setup() {
-    const dicionario = ref(dicionario_data);
+    const dicionario = ref<Definicao[]>(dicionario_data);
 
-    const editarPalavra = ref({});
+    const editarPalavra = ref<Definicao>({
+      id: "",
+      palavra: "",
+      significados: [],
+      sinonimos: [],
+      antonimos: [],
+      etiquetas: [],
+      frases: [],
+    });
     const significados = ref("");
 
     const salvando = ref(false);
@@ -47,7 +57,15 @@ export default defineComponent({
         .filter((i: string) => i.length);
 
       dicionario.value[indice] = editarPalavra.value;
-      editarPalavra.value = {};
+      editarPalavra.value = {
+        id: "",
+        palavra: "",
+        significados: [],
+        sinonimos: [],
+        antonimos: [],
+        etiquetas: [],
+        frases: [],
+      };
       salvando.value = false;
     };
 

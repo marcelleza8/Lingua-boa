@@ -88,7 +88,7 @@ export default defineComponent({
 <template>
   <h1>Editor de Dicionário (Total de Palavras: {{ totalPalavras }})</h1>
   <div class="px-2">
-    <div v-if="Object.keys(editarPalavra).length">
+    <div v-if="editarPalavra.id">
       <Form>
         <h1>Editando {{ editarPalavra.palavra }}</h1>
         <InputText v-model="editarPalavra.palavra" label="Palavra" />

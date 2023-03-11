@@ -17,8 +17,6 @@ export default defineComponent({
     const { totalItems: totalPalavras, definicoes: dicionario } =
       storeToRefs(items);
 
-    // const dicionario = definicoes.value;
-
     const editarPalavra = ref<Definicao>({
       id: "",
       palavra: "",
@@ -33,7 +31,7 @@ export default defineComponent({
     const salvando = ref(false);
 
     const salvar = () => {
-      const jsonData = JSON.stringify(dicionario);
+      const jsonData = JSON.stringify(dicionario.value);
       const blob = new Blob([jsonData], { type: "application/json" });
       const filename = prompt(
         "QUE NOME QUE DAR PARA O JSON?",
@@ -43,47 +41,48 @@ export default defineComponent({
     };
 
     const editarItem = (palavra: any) => {
-      // const editar = dicionario.value.find((item) => palavra.id === item.id);
-      // if (editar) {
-      //   editarPalavra.value = editar;
-      //   // console.log(significados.value);
-      //   significados.value = editarPalavra.value.significados.join(",");
-      //   // console.log(typeof significados.value);
-      // } else {
-      //   alert("Não encontrado");
-      // }
+      const editar = dicionario.value.find((item) => palavra.id === item.id);
+      if (editar) {
+        editarPalavra.value = editar;
+        significados.value = editarPalavra.value.significados.join(",");
+      } else {
+        alert("Não encontrado");
+      }
     };
 
     const removerItem = (palavra: any) => {
-      // const remover = dicionario.value.find((item) => palavra.id === item.id);
-      // if (remover) {
-      //   console.log(remover);
-      //   definicoes.removeItem(remover);
-      // } else {
-      //   alert("Não encontrado");
-      // }
+      const remover = dicionario.value.find((item) => palavra.id === item.id);
+      if (remover) {
+        if (
+          confirm(`Confirmar exclusão de ${remover.palavra.toUpperCase()} ?`)
+        ) {
+          items.delete(remover);
+        }
+      } else {
+        alert("Não encontrado");
+      }
     };
 
     const salvarItem = () => {
-      // salvando.value = true;
-      // const indice = dicionario.value.findIndex(
-      //   (item) => editarPalavra.value.id === item.id,
-      // );
-      // let signifs = significados.value.split(",");
-      // editarPalavra.value.significados = signifs
-      //   .map((i: string) => i.trim())
-      //   .filter((i: string) => i.length);
-      // dicionario.value[indice] = editarPalavra.value;
-      // editarPalavra.value = {
-      //   id: "",
-      //   palavra: "",
-      //   significados: [],
-      //   sinonimos: [],
-      //   antonimos: [],
-      //   etiquetas: [],
-      //   frases: [],
-      // };
-      // salvando.value = false;
+      salvando.value = true;
+      const indice = dicionario.value.findIndex(
+        (item) => editarPalavra.value.id === item.id,
+      );
+      let signifs = significados.value.split(",");
+      editarPalavra.value.significados = signifs
+        .map((i: string) => i.trim())
+        .filter((i: string) => i.length);
+      dicionario.value[indice] = editarPalavra.value;
+      editarPalavra.value = {
+        id: "",
+        palavra: "",
+        significados: [],
+        sinonimos: [],
+        antonimos: [],
+        etiquetas: [],
+        frases: [],
+      };
+      salvando.value = false;
     };
 
     const carregar = () => {};
@@ -110,9 +109,9 @@ export default defineComponent({
     <div v-if="editarPalavra.id">
       <Form>
         <h1>Editando {{ editarPalavra.palavra }}</h1>
-        <InputText v-model="editarPalavra.palavra" label="Palavra" />
+        <InputText v-model.trim="editarPalavra.palavra" label="Palavra" />
         <InputText
-          v-model="significados"
+          v-model.trim="significados"
           label="Significados (separados por vírgula)"
         />
         <div class="mt-3">

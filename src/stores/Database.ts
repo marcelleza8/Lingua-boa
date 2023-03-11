@@ -49,13 +49,20 @@ export const useDefinicoesStore = defineStore({
       // }
     },
     delete(definicao: Definicao) {
-      // const index = this.definicoes.findIndex(
-      //   (t: Definicao) => t.id === definicao.id,
-      // );
-      // if (index !== -1) {
-      //   this.definicoes.splice(index, 1);
-      //   localStorage.setItem(localStorageKey, JSON.stringify(this.definicoes));
-      // }
+      if (this.definicoesDatabase) {
+        const index = this.definicoesDatabase.findIndex(
+          (t: Definicao) => t.id === definicao.id,
+        );
+
+        if (index !== -1) {
+          this.definicoesDatabase.splice(index, 1);
+
+          localStorage.setItem(
+            localStorageKey,
+            JSON.stringify(this.definicoesDatabase),
+          );
+        }
+      }
     },
   },
 });

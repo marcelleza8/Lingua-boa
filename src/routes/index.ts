@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import EditorDicionarioPageVue from "../pages/EditorDicionarioPage.vue";
+import EditorDicionarioPageVue from "../pages/EditorDicionarioPage/Listagem.vue";
 
 const router = createRouter({
   history: createWebHistory(),

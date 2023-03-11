@@ -15,17 +15,12 @@ export const useDefinicoesStore = defineStore({
       definicoesDatabase ? definicoesDatabase : [],
     totalItems: ({ definicoesDatabase }) =>
       definicoesDatabase ? definicoesDatabase.length : 0,
+    find: (state) => (uuid: string) => {
+      if (state.definicoesDatabase)
+        return state.definicoesDatabase.find((i) => i.id === uuid);
+    },
   },
   actions: {
-    setDatabase(data: string | null) {
-      if (data) {
-        this.definicoesDatabase = JSON.parse(data);
-        localStorage.setItem(
-          localStorageKey,
-          JSON.stringify(this.definicoesDatabase),
-        );
-      }
-    },
     create(data: Definicao) {
       const definicao: Definicao = {
         id: crypto.randomUUID(),
@@ -36,17 +31,18 @@ export const useDefinicoesStore = defineStore({
         etiquetas: data.etiquetas,
         frases: data.frases,
       };
-      // this.definicoes.push(definicao);
-      // localStorage.setItem(localStorageKey, JSON.stringify(this.definicoes));
     },
     update(definicao: Definicao) {
-      // const index = this.definicoes.findIndex(
-      //   (t: Definicao) => t.id === definicao.id,
-      // );
-      // if (index !== -1) {
-      //   this.definicoes.splice(index, 1, definicao);
-      //   localStorage.setItem(localStorageKey, JSON.stringify(this.definicoes));
-      // }
+      const index = this.definicoes.findIndex(
+        (t: Definicao) => t.id === definicao.id,
+      );
+      if (index !== -1) {
+        this.definicoes[index] = definicao;
+        localStorage.setItem(
+          localStorageKey,
+          JSON.stringify(this.definicoesDatabase),
+        );
+      }
     },
     delete(definicao: Definicao) {
       if (this.definicoesDatabase) {
@@ -64,9 +60,18 @@ export const useDefinicoesStore = defineStore({
         }
       }
     },
+    setDatabase(data: string | null) {
+      if (data) {
+        this.definicoesDatabase = JSON.parse(data);
+        localStorage.setItem(
+          localStorageKey,
+          JSON.stringify(this.definicoesDatabase),
+        );
+      }
+    },
   },
 });
 
 interface DatabaseState {
-  definicoesDatabase: string | null;
+  definicoesDatabase: Definicao[] | null;
 }

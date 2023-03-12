@@ -57,31 +57,39 @@ export default defineComponent({
 </script>
 <template>
   <Form v-if="editarPalavra">
-    <h1
-      class="text-center text-3xl"
-      :class="!editarPalavra.palavra ? 'text-transparent' : ''"
-    >
-      Editando {{ editarPalavra.palavra }}
-    </h1>
-    <InputText v-model="editarPalavra.palavra" label="Palavra" />
-    <InputText
-      v-model="significados"
-      label="Significados (separados por vírgula)"
-    />
-    <div class="mt-3 flex justify-around">
-      <button
-        :disabled="salvando"
-        @click="salvarItem"
-        class="rounded-lg border border-suikiri-700 px-2 py-1 disabled:bg-gray-700"
+    <div class="px-5">
+      <h1
+        class="text-center text-xl md:text-3xl"
+        :class="!editarPalavra.palavra ? 'text-transparent' : ''"
       >
-        Salvar
-      </button>
-      <span v-if="salvando">Salvando Palavra, aguarde um instante ....</span>
-      <router-link
-        :to="{ name: 'editor-dicionario' }"
-        class="rounded-lg border border-orange-300 px-2 py-1 disabled:bg-gray-700"
-        >Voltar</router-link
-      >
+        Editando {{ editarPalavra.palavra }}
+      </h1>
+      <div class="space-y-4">
+        <div>
+          <InputText v-model="editarPalavra.palavra" label="Palavra" />
+        </div>
+        <div>
+          <InputText
+            v-model="significados"
+            label="Significados (separados por vírgula)"
+          />
+        </div>
+      </div>
+      <div class="mt-3 flex justify-around">
+        <button
+          :disabled="salvando"
+          @click="salvarItem"
+          class="rounded-lg border border-suikiri-700 px-2 py-1 disabled:bg-gray-700"
+        >
+          Salvar
+        </button>
+        <span v-if="salvando">Salvando Palavra, aguarde um instante ....</span>
+        <router-link
+          :to="{ name: 'editor-dicionario' }"
+          class="rounded-lg border border-orange-300 px-2 py-1 disabled:bg-gray-700"
+          >Voltar</router-link
+        >
+      </div>
     </div>
   </Form>
 </template>

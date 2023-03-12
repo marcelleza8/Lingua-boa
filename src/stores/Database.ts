@@ -1,6 +1,18 @@
 import { defineStore } from "pinia";
 import { Definicao } from "../types/Definicao";
 
+function uuidv4(a: any = "", b: any = "") {
+  for (
+    b = a = "";
+    a++ < 36;
+    b +=
+      (a * 51) & 52
+        ? (a ^ 15 ? 8 ^ (Math.random() * (a ^ 20 ? 16 : 4)) : 4).toString(16)
+        : "-"
+  );
+  return b;
+}
+
 const localStorageKey = "definicoes";
 
 const initialState: DatabaseState = {
@@ -16,21 +28,30 @@ export const useDefinicoesStore = defineStore({
     totalItems: ({ definicoesDatabase }) =>
       definicoesDatabase ? definicoesDatabase.length : 0,
     find: (state) => (uuid: string) => {
-      if (state.definicoesDatabase)
-        return state.definicoesDatabase.find((i) => i.id === uuid);
+      if (state.definicoesDatabase) {
+        let found = state.definicoesDatabase.find((i) => i.id === uuid);
+        if (!found) {
+          found = {
+            palavra: "",
+            antonimos: [],
+            sinonimos: [],
+            significados: [],
+            etiquetas: [],
+            frases: [],
+          };
+        }
+        return found;
+      }
     },
   },
   actions: {
     create(data: Definicao) {
-      const definicao: Definicao = {
-        id: crypto.randomUUID(),
-        palavra: data.palavra,
-        antonimos: data.antonimos,
-        sinonimos: data.sinonimos,
-        significados: data.significados,
-        etiquetas: data.etiquetas,
-        frases: data.frases,
-      };
+      data.id = uuidv4();
+      this.definicoesDatabase?.push(data);
+      localStorage.setItem(
+        localStorageKey,
+        JSON.stringify(this.definicoesDatabase),
+      );
     },
     update(definicao: Definicao) {
       const index = this.definicoes.findIndex(

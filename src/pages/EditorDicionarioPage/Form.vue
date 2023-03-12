@@ -14,13 +14,9 @@ export default defineComponent({
 
     const { definicoes: dicionario } = storeToRefs(items);
 
-    const editarPalavra = items.find(props.uuid);
+    const editarPalavra = ref(items.find(props.uuid));
 
-    if (!editarPalavra) {
-      alert("Cadastro");
-    }
-
-    const significados = ref(editarPalavra?.significados.join(",") || "");
+    const significados = ref(editarPalavra.value?.significados.join(",") || "");
 
     const salvando = ref(false);
 
@@ -29,13 +25,19 @@ export default defineComponent({
 
       let signifs = significados.value.split(",");
 
-      if (editarPalavra)
-        editarPalavra.significados = signifs
+      if (editarPalavra.value)
+        editarPalavra.value.significados = signifs
           .map((i: string) => i.trim())
           .filter((i: string) => i.length);
 
       setTimeout(() => {
-        if (editarPalavra) items.update(editarPalavra);
+        if (editarPalavra) {
+          if (editarPalavra.value?.id) {
+            items.update(editarPalavra.value);
+          } else {
+            if (editarPalavra.value) items.create(editarPalavra.value);
+          }
+        }
 
         salvando.value = false;
         router.push({ name: "editor-dicionario" });

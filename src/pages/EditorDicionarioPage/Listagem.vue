@@ -1,5 +1,4 @@
 <script lang="ts">
-// @ts-nocheck
 import { defineComponent, ref, computed } from "vue";
 import { saveAs } from "file-saver";
 import { storeToRefs } from "pinia";
@@ -54,15 +53,24 @@ export default defineComponent({
   <div class="px-2">
     <div>
       <div class="flex justify-evenly">
-        <InputUpload class="rounded-md border border-orange-peel-500 px-2 py-1"
-          >Carregar JSON</InputUpload
-        >
-        <button
-          @click="exportarJSON"
+        <router-link
           class="rounded-md border border-green-600 px-2 py-1"
+          :to="{ name: 'editor-dicionario.form', params: { uuid: 'novo' } }"
         >
-          Exportar JSON
-        </button>
+          Nova palavra
+        </router-link>
+        <div class="space-x-3">
+          <InputUpload
+            class="rounded-md border border-orange-peel-500 px-2 py-1"
+            >Carregar JSON</InputUpload
+          >
+          <button
+            @click="exportarJSON"
+            class="rounded-md border border-green-600 px-2 py-1"
+          >
+            Exportar JSON
+          </button>
+        </div>
       </div>
 
       <table class="w-full table-auto">

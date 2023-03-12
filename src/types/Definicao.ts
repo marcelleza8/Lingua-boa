@@ -1,5 +1,5 @@
 export interface Definicao {
-  id: string;
+  id?: string;
   palavra: string;
   significados: string[];
   sinonimos: string[];

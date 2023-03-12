@@ -45,7 +45,10 @@ export default defineComponent({
         >
           Nova palavra
         </router-link>
-        <JSONexport :export-data="dicionario" />
+        <JSONexport
+          :export-data="dicionario"
+          class="rounded-md border border-orange-600 px-2 py-1 pr-1"
+        />
       </div>
 
       <table class="w-full table-auto">

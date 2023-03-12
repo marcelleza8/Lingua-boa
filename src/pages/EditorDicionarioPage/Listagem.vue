@@ -1,11 +1,8 @@
 <script lang="ts">
-import { defineComponent, ref, computed } from "vue";
-import { saveAs } from "file-saver";
+import { defineComponent } from "vue";
 import { storeToRefs } from "pinia";
-import Form from "../../components/Formularios/Form.vue";
-import InputText from "../../components/Formularios/InputText.vue";
-import InputUpload from "../../components/Formularios/InputUpload.vue";
 import { useDefinicoesStore } from "../../stores/Database";
+import JSONexport from "../../components/JSONexport.vue";
 
 export default defineComponent({
   name: "EditorDicionárioPage",
@@ -14,16 +11,6 @@ export default defineComponent({
 
     const { totalItems: totalPalavras, definicoes: dicionario } =
       storeToRefs(items);
-
-    const exportarJSON = () => {
-      const jsonData = JSON.stringify(dicionario.value);
-      const blob = new Blob([jsonData], { type: "application/json" });
-      const filename = prompt(
-        "QUE NOME QUE DAR PARA O JSON?",
-        "dicionário_nheengatu",
-      );
-      saveAs(blob, `${filename}.json`);
-    };
 
     const removerItem = (palavra: any) => {
       const remover = dicionario.value.find((item) => palavra.id === item.id);
@@ -41,11 +28,10 @@ export default defineComponent({
     return {
       dicionario,
       totalPalavras,
-      exportarJSON,
       removerItem,
     };
   },
-  components: { Form, InputText, InputUpload },
+  components: { JSONexport },
 });
 </script>
 <template>
@@ -59,18 +45,7 @@ export default defineComponent({
         >
           Nova palavra
         </router-link>
-        <div class="space-x-3">
-          <InputUpload
-            class="rounded-md border border-orange-peel-500 px-2 py-1"
-            >Carregar JSON</InputUpload
-          >
-          <button
-            @click="exportarJSON"
-            class="rounded-md border border-green-600 px-2 py-1"
-          >
-            Exportar JSON
-          </button>
-        </div>
+        <JSONexport :export-data="dicionario" />
       </div>
 
       <table class="w-full table-auto">

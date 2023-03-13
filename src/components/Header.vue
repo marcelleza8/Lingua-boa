@@ -1,5 +1,6 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
+import LetrasWrapper from "./LetrasWrapper.vue";
 
 export default defineComponent({
   name: "Header",
@@ -8,11 +9,12 @@ export default defineComponent({
     const handleSubmit = () => {};
     const handleInputKeyDown = () => {};
 
-    const inputSearch = ref(null);
-    const searchFor = ref("");
+    const inputSearch = ref<HTMLInputElement | null>(null);
+    const searchFor = ref<string>("");
 
-    const addLetra = ($e: any) => {
-      searchFor.value += $e.target.innerText;
+    const includeLetter = (e: any) => {
+      searchFor.value += e;
+      if (inputSearch.value) inputSearch.value.focus();
     };
 
     return {
@@ -21,9 +23,10 @@ export default defineComponent({
       handleInputKeyDown,
       inputSearch,
       searchFor,
-      addLetra,
+      includeLetter,
     };
   },
+  components: { LetrasWrapper },
 });
 </script>
 <template>
@@ -44,19 +47,5 @@ export default defineComponent({
       Pesquisar
     </button>
   </div>
-  <div class="letras">
-    <button @click="addLetra($event)">ẽ</button>
-    <button @click="addLetra($event)">ĩ</button>
-    <button @click="addLetra($event)">ũ</button>
-    <button @click="addLetra($event)">ã</button>
-  </div>
+  <LetrasWrapper @change="includeLetter" />
 </template>
-
-<style scoped>
-.letras {
-  @apply mt-4 space-x-3 text-center;
-}
-.letras button {
-  @apply rounded-lg bg-orange-600 px-3 py-2;
-}
-</style>

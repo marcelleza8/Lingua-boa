@@ -35,8 +35,8 @@ export default defineComponent({
 });
 </script>
 <template>
-  <h1>Editor de Dicionário (Total de Palavras: {{ totalPalavras ?? 0 }})</h1>
-  <div class="mt-4 px-2">
+  <div class="px-2">
+    <h1>Editor de Dicionário (Total de Palavras: {{ totalPalavras ?? 0 }})</h1>
     <div>
       <div class="flex justify-evenly">
         <router-link

@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   name: "Header",
@@ -8,25 +8,33 @@ export default defineComponent({
     const handleSubmit = () => {};
     const handleInputKeyDown = () => {};
 
-    const value = "";
+    const inputSearch = ref(null);
+    const searchFor = ref("");
+
+    const addLetra = ($e: any) => {
+      searchFor.value += $e.target.innerText;
+    };
 
     return {
       handleInputChange,
       handleSubmit,
       handleInputKeyDown,
-      value,
+      inputSearch,
+      searchFor,
+      addLetra,
     };
   },
 });
 </script>
 <template>
-  <div class="w-100 absolute inset-x-0 top-4 z-10 px-2 text-center">
+  <div class="pt-4 text-center">
     <input
       class="px-4 py-2 md:w-80"
       type="text"
       placeholder="Pesquisar..."
+      ref="inputSearch"
       @change="handleInputChange"
-      :value="value"
+      v-model="searchFor"
       @keydown="handleInputKeyDown"
     />
     <button
@@ -36,4 +44,19 @@ export default defineComponent({
       Pesquisar
     </button>
   </div>
+  <div class="letras">
+    <button @click="addLetra($event)">ẽ</button>
+    <button @click="addLetra($event)">ĩ</button>
+    <button @click="addLetra($event)">ũ</button>
+    <button @click="addLetra($event)">ã</button>
+  </div>
 </template>
+
+<style scoped>
+.letras {
+  @apply mt-4 space-x-3 text-center;
+}
+.letras button {
+  @apply rounded-lg bg-orange-600 px-3 py-2;
+}
+</style>

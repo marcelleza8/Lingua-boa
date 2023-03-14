@@ -5,7 +5,7 @@ import Form from "../../components/Formularios/Form.vue";
 import InputText from "../../components/Formularios/InputText.vue";
 import InputUpload from "../../components/Formularios/InputUpload.vue";
 import { useDefinicoesStore } from "../../stores/Database";
-
+import LetrasWrapper from "../../components/LetrasWrapper.vue";
 import router from "../../routes";
 
 export default defineComponent({
@@ -15,6 +15,8 @@ export default defineComponent({
     const { definicoes: dicionario } = storeToRefs(items);
 
     const editarPalavra = ref(items.find(props.uuid));
+
+    const palavraElm = ref();
 
     const significados = ref(editarPalavra.value?.significados.join(",") || "");
 
@@ -44,14 +46,21 @@ export default defineComponent({
       }, 500);
     };
 
+    const addLetra = (letra: string) => {
+      if (editarPalavra.value) editarPalavra.value.palavra += letra;
+      if (palavraElm.value) palavraElm.value.focusInput();
+    };
+
     return {
       editarPalavra,
       salvando,
       significados,
       salvarItem,
+      addLetra,
+      palavraElm,
     };
   },
-  components: { Form, InputText, InputUpload },
+  components: { Form, InputText, InputUpload, LetrasWrapper },
   props: ["uuid"],
 });
 </script>
@@ -69,8 +78,11 @@ export default defineComponent({
           <InputText
             v-model="editarPalavra.palavra"
             input-id="input-palavra"
+            class="teste"
+            ref="palavraElm"
             label="Palavra"
           />
+          <LetrasWrapper @change="addLetra" />
         </div>
         <div>
           <InputText

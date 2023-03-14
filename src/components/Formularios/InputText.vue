@@ -6,16 +6,21 @@ export default defineComponent({
   setup(props, { emit }) {
     const idError = ref(false);
 
-    const inputText = ref<HTMLInputElement>();
+    const inputRef = ref<HTMLInputElement | null>(null);
 
     const handleInput = ($e: any) => {
       emit("update:modelValue", $e.target.value);
     };
 
+    const focusInput = () => {
+      inputRef.value?.focus();
+    };
+
     return {
       idError,
-      inputText,
       handleInput,
+      inputRef,
+      focusInput,
     };
   },
   props: {
@@ -44,7 +49,7 @@ export default defineComponent({
       type="text"
       :id="inputId"
       :value="modelValue"
-      ref="inputText"
+      ref="inputRef"
       @input="handleInput"
       :placeholder="label"
       class="input-bordered input w-full"

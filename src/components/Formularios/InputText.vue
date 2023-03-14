@@ -1,17 +1,20 @@
 <script lang="ts">
-import { defineComponent, ref, onMounted } from "vue";
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   name: "InputText",
-  setup(props, context) {
+  setup(props, { emit }) {
     const idError = ref(false);
 
+    const inputText = ref<HTMLInputElement>();
+
     const handleInput = ($e: any) => {
-      context.emit("update:modelValue", $e.target.value);
+      emit("update:modelValue", $e.target.value);
     };
 
     return {
       idError,
+      inputText,
       handleInput,
     };
   },
@@ -24,18 +27,30 @@ export default defineComponent({
     modelValue: {
       required: true,
     },
+    inputId: {
+      default: `input-text-${Date.now()}-${Math.random()
+        .toString(36)
+        .substring(2, 9)}`,
+    },
   },
 });
 </script>
 <template>
-  <label for="id" class="mb-2 block font-bold text-gray-700">{{ label }}</label>
-  <input
-    id="id"
-    type="text"
-    :value="modelValue"
-    @input="handleInput"
-    :class="{ 'border-red-500': idError }"
-    class="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
-    :placeholder="label"
-  />
+  <div class="form-control w-full">
+    <label class="label" :for="inputId">
+      <span class="label-text">{{ label }}</span>
+    </label>
+    <input
+      type="text"
+      :id="inputId"
+      :value="modelValue"
+      ref="inputText"
+      @input="handleInput"
+      :placeholder="label"
+      class="input-bordered input w-full"
+    />
+    <label v-if="false" class="label">
+      <span class="label-text-alt">ERRO</span>
+    </label>
+  </div>
 </template>

@@ -66,11 +66,16 @@ export default defineComponent({
       </h1>
       <div class="space-y-4">
         <div>
-          <InputText v-model="editarPalavra.palavra" label="Palavra" />
+          <InputText
+            v-model="editarPalavra.palavra"
+            input-id="input-palavra"
+            label="Palavra"
+          />
         </div>
         <div>
           <InputText
             v-model="significados"
+            input-id="input-significados"
             label="Significados (separados por vírgula)"
           />
         </div>

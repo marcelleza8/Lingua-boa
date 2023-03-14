@@ -1,14 +1,13 @@
 <template>
   <div class="inline-block cursor-pointer">
-    <label for="fileInput" class="cursor-pointer">
+    <label for="importJSON" class="cursor-pointer">
       <slot></slot>
     </label>
     <input
       type="file"
-      id="fileInput"
-      ref="fileInput"
+      id="importJSON"
       style="display: none"
-      @change="handleFileChange"
+      @change="handleFileChange($event)"
     />
   </div>
 </template>
@@ -20,28 +19,29 @@ import { useDefinicoesStore } from "../../stores/Database";
 
 export default defineComponent({
   setup() {
-    const fileInput = ref(null);
-
     const definicoes = useDefinicoesStore();
 
-    const handleFileChange = () => {
+    const handleFileChange = ($e: Event) => {
+      const fileElm = $e.target as HTMLInputElement;
       const reader = new FileReader();
+
       reader.onload = () => {
         try {
-          if (typeof reader.result == "string") {
-            const jsonData = JSON.parse(reader.result);
-            definicoes.setDatabase(reader.result);
-          }
+          const jsonData = JSON.parse(reader.result as string);
         } catch (error) {
           alert("O arquivo selecionado não é um JSON válido");
         }
+
+        setTimeout(() => {
+          definicoes.setDatabase(reader.result as string);
+        }, 100);
+        alert("Carregando JSON aguarde um instante");
+        console.log("Carregando JSON aguarde um instante");
       };
-      if (fileInput.value != null)
-        reader.readAsText(fileInput.value["files"][0]);
+      if (fileElm.files) reader.readAsText(fileElm.files[0]);
     };
 
     return {
-      fileInput,
       handleFileChange,
     };
   },

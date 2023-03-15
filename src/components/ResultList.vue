@@ -1,31 +1,31 @@
 <script lang="ts">
 import { defineComponent } from "vue";
-import MeanigList from "./MeanigList.vue";
-import Example from "./Example.vue";
-import Synonym from "./Synonym.vue";
-import Antonym from "./Antonym.vue";
+import { Definicao } from "../types/Definicao";
+
+import ResultCard from "./ResultCard.vue";
 
 export default defineComponent({
-  components: {
-    MeanigList,
-    Example,
-    Synonym,
-    Antonym,
-  },
+  components: { ResultCard },
 });
 </script>
 
 <template>
-  <div class="container mx-auto max-w-2xl space-y-3 p-4">
-    <div class="rounded-md bg-gray-100 py-4 px-2">
-      <h3 class="mt-4 text-2xl font-bold">Significado e definição:</h3>
-      <MeanigList mean="{response}" />
-      <h3 class="mt-4 text-2xl font-bold">Exemplo:</h3>
-      <Example mean="{response}" />
-      <h3 class="mt-4 text-2xl font-bold">Sinônimo:</h3>
-      <Synonym mean="{response}" />
-      <h3 class="mt-4 text-2xl font-bold">Antônimo:</h3>
-      <Antonym mean="{response}" />
+  <div class="container mx-auto space-y-3 p-4">
+    <div class="grid grid-cols-12 gap-8">
+      <ResultCard
+        class="col-span-12 md:col-span-6 lg:col-span-4"
+        v-for="(item, i) in [...new Array(20)].map((v, i): Definicao => ({
+          palavra:
+            `Resultado ` +
+            (Number((++i).toFixed(3)) / 100).toString().replace('.', ''),
+          significados: [`primeiro`, `segundo`],
+          sinonimos:[],
+          antonimos: [],
+          frases:[],
+          etiquetas:[]
+        }))"
+        :result="item"
+      />
     </div>
   </div>
 </template>

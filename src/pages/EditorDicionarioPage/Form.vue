@@ -82,7 +82,10 @@ export default defineComponent({
             ref="palavraElm"
             label="Palavra"
           />
-          <LetrasWrapper @change="addLetra" />
+          <LetrasWrapper
+            class="mx-auto mt-4 w-1/2 space-x-4 sm:w-1/4 md:w-1/5 lg:w-1/6"
+            @change="addLetra"
+          />
         </div>
         <div>
           <InputText

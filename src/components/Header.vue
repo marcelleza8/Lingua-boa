@@ -35,7 +35,7 @@ export default defineComponent({
       <div class="input-group w-full">
         <input
           type="text"
-          placeholder="Busque em portugues ou Nheengatu"
+          placeholder="Busque em nheengatu ou português"
           class="w-full focus:border-orange-500 focus:ring-0"
           ref="inputSearch"
           @change="handleInputChange"

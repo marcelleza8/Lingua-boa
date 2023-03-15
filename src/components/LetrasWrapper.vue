@@ -29,9 +29,9 @@ export default defineComponent({
 
 <style scoped>
 .letras {
-  @apply mt-4 space-x-3 text-center;
+  @apply flex;
 }
 .letras button {
-  @apply rounded-lg bg-orange-600 px-3 py-2;
+  @apply flex-1 rounded-lg bg-orange-600 px-3 py-2;
 }
 </style>

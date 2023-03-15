@@ -31,21 +31,38 @@ export default defineComponent({
 </script>
 <template>
   <div class="pt-4 text-center">
-    <input
-      class="px-4 py-2 md:w-80"
-      type="text"
-      placeholder="Pesquisar..."
-      ref="inputSearch"
-      @change="handleInputChange"
-      v-model="searchFor"
-      @keydown="handleInputKeyDown"
+    <div class="form-control inline-block w-10/12">
+      <div class="input-group w-full">
+        <input
+          type="text"
+          placeholder="Busque em portugues ou Nheengatu"
+          class="w-full focus:border-orange-500 focus:ring-0"
+          ref="inputSearch"
+          @change="handleInputChange"
+          v-model="searchFor"
+          @keydown="handleInputKeyDown"
+        />
+        <button @click="handleSubmit" class="btn-square btn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <LetrasWrapper
+      class="mx-auto mt-4 w-1/2 space-x-4 sm:w-1/4 md:w-1/5 lg:w-1/6"
+      @change="includeLetter"
     />
-    <button
-      class="border-l bg-suikiri-700 px-4 py-2 text-white"
-      @click="handleSubmit"
-    >
-      Pesquisar
-    </button>
   </div>
-  <LetrasWrapper @change="includeLetter" />
 </template>

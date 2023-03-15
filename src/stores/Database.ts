@@ -1,18 +1,6 @@
 import { defineStore } from "pinia";
 import { Definicao } from "../types/Definicao";
-
-function uuidv4(a: any = "", b: any = "") {
-  for (
-    b = a = "";
-    a++ < 36;
-    b +=
-      (a * 51) & 52
-        ? (a ^ 15 ? 8 ^ (Math.random() * (a ^ 20 ? 16 : 4)) : 4).toString(16)
-        : "-"
-  );
-  return b;
-}
-
+import { uuidv4 } from "../utils";
 const localStorageKey = "definicoes";
 
 const initialState: DatabaseState = {

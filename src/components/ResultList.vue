@@ -5,6 +5,10 @@ import { Definicao } from "../types/Definicao";
 import ResultCard from "./ResultCard.vue";
 
 export default defineComponent({
+  setup() {
+    // console.log(import.meta.env.VITE_BASE_URL);
+    // console.log(import.meta.env.BASE_URL, "er");
+  },
   components: { ResultCard },
 });
 </script>

@@ -8,27 +8,18 @@ import ResultList from "../components/ResultList.vue";
 export default defineComponent({
   name: "HomePage",
   setup() {
-    /* onMounted(() => {
-      const audioContext = new window.AudioContext();
-      console.log(audioContext);
-
-      // Criar um elemento de áudio
-      const audio = new Audio();
-
-      // Definir o atributo src como a string base64
-      audio.src = "data:audio/mp3;base64," + song;
-
-      console.log(audio);
-
-      // Reproduzir o áudio
-      audio.play();
-    }); */
+    const findWord = (word: string) => {
+      console.log(word);
+    }
+    return {
+      findWord
+    }
   },
   components: { Header, ResultList },
 });
 </script>
 <template>
-  <Header />
+  <Header @searchFor="findWord" />
   <div class="pt-12">
     <ResultList />
   </div>

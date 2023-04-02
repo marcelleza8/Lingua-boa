@@ -16,5 +16,5 @@ export default defineComponent({
   <div class="md:mt-14">
     <RouterView />
   </div>
-  <TailwindDebugBar v-if="false" />
+  <TailwindDebugBar v-if="true" />
 </template>

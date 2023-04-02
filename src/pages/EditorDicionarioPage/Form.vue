@@ -8,6 +8,8 @@ import { useDefinicoesStore } from "../../stores/Database";
 import LetrasWrapper from "../../components/LetrasWrapper.vue";
 import router from "../../routes";
 
+import VoiceRecorder from "../../components/VoiceRecorder/index.vue";
+
 export default defineComponent({
   setup(props) {
     const items = useDefinicoesStore();
@@ -60,7 +62,7 @@ export default defineComponent({
       palavraElm,
     };
   },
-  components: { Form, InputText, InputUpload, LetrasWrapper },
+  components: { Form, InputText, InputUpload, LetrasWrapper, VoiceRecorder },
   props: ["uuid"],
 });
 </script>
@@ -73,6 +75,7 @@ export default defineComponent({
       >
         Editando {{ editarPalavra.palavra }}
       </h1>
+      <VoiceRecorder />
       <div class="space-y-4">
         <div>
           <InputText

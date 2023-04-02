@@ -4,13 +4,16 @@ import LetrasWrapper from "./LetrasWrapper.vue";
 
 export default defineComponent({
   name: "Header",
-  setup() {
+  setup(props, {emit}) {
     const handleInputChange = () => {};
-    const handleSubmit = () => {};
     const handleInputKeyDown = () => {};
 
     const inputSearch = ref<HTMLInputElement | null>(null);
     const searchFor = ref<string>("");
+
+    const handleSubmit = () => {
+      emit("searchFor", searchFor.value);
+    };
 
     const includeLetter = (e: any) => {
       searchFor.value += e;
@@ -26,6 +29,7 @@ export default defineComponent({
       includeLetter,
     };
   },
+  props:["modelValue"],
   components: { LetrasWrapper },
 });
 </script>
@@ -39,6 +43,7 @@ export default defineComponent({
           class="w-full focus:border-orange-500 focus:ring-0"
           ref="inputSearch"
           @change="handleInputChange"
+          @keyup.enter="handleSubmit"
           v-model="searchFor"
           @keydown="handleInputKeyDown"
         />

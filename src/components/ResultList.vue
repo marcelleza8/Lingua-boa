@@ -10,6 +10,7 @@ export default defineComponent({
     // console.log(import.meta.env.BASE_URL, "er");
   },
   components: { ResultCard },
+  props: ["items"],
 });
 </script>
 
@@ -18,16 +19,7 @@ export default defineComponent({
     <div class="grid grid-cols-12 gap-8">
       <ResultCard
         class="col-span-12 md:col-span-6 lg:col-span-4"
-        v-for="(item, i) in [...new Array(20)].map((v, i): Definicao => ({
-          palavra:
-            `Resultado ` +
-            (Number((++i).toFixed(3)) / 100).toString().replace('.', ''),
-          significados: [`primeiro`, `segundo`],
-          sinonimos:[],
-          antonimos: [],
-          frases:[],
-          etiquetas:[]
-        }))"
+        v-for="(item, i) in items"
         :result="item"
       />
     </div>

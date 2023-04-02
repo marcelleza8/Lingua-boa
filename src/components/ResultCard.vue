@@ -83,7 +83,7 @@ export default defineComponent({
         </div>
       </div>
     </div>
-    <span class="mt-4 block">{{ result.significados.join(", ") }}</span>
+    <!-- <span class="mt-4 block">{{ result.significados.join(", ") }}</span> -->
     <!-- <h3 class="mt-4 text-2xl font-bold">Significado e definição:</h3> -->
     <!-- <MeanigList mean="{response}" /> -->
     <!-- <h3 class="mt-4 text-2xl font-bold">Exemplo:</h3> -->

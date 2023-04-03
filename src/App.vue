@@ -13,7 +13,7 @@ export default defineComponent({
 <template>
   <!-- <Sidebar /> -->
   <MainMenu />
-  <div class="md:mt-14">
+  <div class="mb-9 md:mb-0 md:mt-10">
     <RouterView />
   </div>
   <TailwindDebugBar v-if="true" />

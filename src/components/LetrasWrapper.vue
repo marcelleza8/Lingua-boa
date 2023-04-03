@@ -5,7 +5,7 @@ export default defineComponent({
   name: "LetrasWrapper",
   setup(props, { emit }) {
     const addLetra = ($e: any) => {
-      emit("change", $e.target.innerText);
+      emit("change", $e.target.innerText.toLowerCase());
     };
     return {
       addLetra,
@@ -32,6 +32,6 @@ export default defineComponent({
   @apply flex;
 }
 .letras button {
-  @apply flex-1 rounded-lg bg-orange-600 px-3 py-2;
+  @apply flex-1 rounded-lg bg-vista-blue-300 px-3 py-2 font-extrabold uppercase text-green-kelp-800;
 }
 </style>

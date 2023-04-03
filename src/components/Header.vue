@@ -4,7 +4,7 @@ import LetrasWrapper from "./LetrasWrapper.vue";
 
 export default defineComponent({
   name: "Header",
-  setup(props, {emit}) {
+  setup(props, { emit }) {
     const handleInputChange = () => {};
     const handleInputKeyDown = () => {};
 
@@ -29,13 +29,13 @@ export default defineComponent({
       includeLetter,
     };
   },
-  props:["modelValue"],
+  props: ["modelValue"],
   components: { LetrasWrapper },
 });
 </script>
 <template>
   <div class="pt-4 text-center">
-    <div class="form-control inline-block w-10/12">
+    <div class="form-control inline-block w-full">
       <div class="input-group w-full">
         <input
           type="text"

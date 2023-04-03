@@ -10,7 +10,6 @@ export default defineComponent({
   name: "HomePage",
   setup() {
     const results = ref("");
-    // alert(process.env.VITE_BASE_URL);
     const findWord = (word: string) => {
       axios
         .get("/buscar", {
@@ -32,8 +31,10 @@ export default defineComponent({
 });
 </script>
 <template>
-  <Header @searchFor="findWord" />
-  <div class="pt-12">
-    <ResultList :items="results" />
+  <div class="container mx-auto grid h-screen place-items-center px-3">
+    <Header @searchFor="findWord" class="w-full" />
+    <div class="pt-12">
+      <ResultList :items="results" />
+    </div>
   </div>
 </template>

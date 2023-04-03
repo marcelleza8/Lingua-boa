@@ -4,7 +4,6 @@ import * as fs from "fs";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "https://10.0.0.150:5173/",
   plugins: [vue()],
   server: {
     cors: {

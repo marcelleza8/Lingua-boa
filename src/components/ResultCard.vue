@@ -21,10 +21,13 @@ export default defineComponent({
       modalCompartilhar.value = !modalCompartilhar.value;
     };
 
+    const base_url = import.meta.env.VITE_BASE_URL;
+
     return {
       compartilhar,
       modalCompartilhar,
       id,
+      base_url
     };
   },
   props: {
@@ -46,7 +49,7 @@ export default defineComponent({
 </script>
 <template>
   <div
-    class="rounded-md border border-slate-600 py-4 px-2 shadow-md"
+    class="rounded-md text-green-kelp-900 bg-green-kelp-400 py-4 px-2 shadow-md"
     v-if="result"
   >
     <div class="flex justify-between">
@@ -66,11 +69,11 @@ export default defineComponent({
               <h3 class="text-lg font-bold">Compartilhar esse verbete</h3>
               <p class="space-y-7 py-4">
                 <div>
-                  <a target="_blank" href="https://wa.me?text=Veja só o que esse verbete significa em *Nheengatu*: http://teste.com" class=" inline-block border border-green-300 p-2 rounded-full cursor-pointer">
+                  <a target="_blank" :href="`https://wa.me?text=Veja só o que a paravra *${result.palavra}* significa em *Nheengatu*: ${base_url}/palavra/${result.slug}`" class=" inline-block border border-green-300 p-2 rounded-full cursor-pointer">
                     <WhatsappIcon class="h-10 w-10 " />
                   </a>
                 </div>
-                <InputGroup :readonly="true" value="http://teste.com">
+                <InputGroup :readonly="true" :value="`${base_url}/palavra/${result.slug}`">
                   <template #icon>
                     <div class="h-full w-full p-2">
                       <LinkIcon />

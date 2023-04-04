@@ -6,7 +6,7 @@ import axios from "axios";
 // key: fs.readFileSync('./public/certificates/localhost-key.pem'),
 //   });
 
-const baseURL = "https://10.0.0.150/api";
+const baseURL = import.meta.env.VITE_API_URL;
 
 const axiosInstance = axios.create({
   // httpsAgent: agent,

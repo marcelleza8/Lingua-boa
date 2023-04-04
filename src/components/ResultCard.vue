@@ -65,7 +65,7 @@ export default defineComponent({
             class="modal-toggle"
           />
           <label :for="id" class="modal cursor-pointer">
-            <label class="modal-box relative" for="">
+            <label class="modal-box relative dark:bg-white">
               <h3 class="text-lg font-bold">Compartilhar esse verbete</h3>
               <p class="space-y-7 py-4">
                 <div>

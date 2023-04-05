@@ -14,11 +14,9 @@ export default defineComponent({
         <RouterLink :to="{ name: 'home' }">Aprender</RouterLink>
       </li>
       <li>
-        <RouterLink :to="{ name: 'editor-dicionario' }"
-          >Editor (Dicionário)
-        </RouterLink>
+        <RouterLink :to="{ name: 'home' }">Dicionário </RouterLink>
       </li>
-      <li><a href="#">Treinar</a></li>
+      <li><RouterLink :to="{ name: 'home' }">Treinar</RouterLink></li>
     </ul>
   </nav>
 </template>

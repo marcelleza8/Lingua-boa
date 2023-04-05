@@ -10,7 +10,9 @@ export default defineComponent({
   name: "HomePage",
   setup() {
     const results = ref("");
+    const disableSearch = ref<boolean>(false);
     const findWord = (word: string) => {
+      disableSearch.value = true;
       axios
         .get("/buscar", {
           params: {
@@ -20,11 +22,16 @@ export default defineComponent({
         })
         .then((r) => {
           results.value = r.data.data;
+        })
+        .catch(() => {})
+        .finally(() => {
+          disableSearch.value = false;
         });
     };
     return {
       findWord,
       results,
+      disableSearch,
     };
   },
   components: { Header, ResultList },
@@ -32,7 +39,7 @@ export default defineComponent({
 </script>
 <template>
   <div class="container mx-auto grid h-screen place-items-center px-3">
-    <Header @searchFor="findWord" class="w-full" />
+    <Header @searchFor="findWord" :disabled="disableSearch" class="w-full" />
     <div class="pt-12">
       <ResultList :items="results" />
     </div>

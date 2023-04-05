@@ -29,7 +29,12 @@ export default defineComponent({
       includeLetter,
     };
   },
-  props: ["modelValue"],
+  props: {
+    modelValue: String,
+    disabled: {
+      default: false,
+    },
+  },
   components: { LetrasWrapper },
 });
 </script>
@@ -39,15 +44,20 @@ export default defineComponent({
       <div class="input-group w-full">
         <input
           type="text"
+          :disabled="disabled"
           placeholder="Busque em nheengatu ou português"
-          class="w-full focus:border-orange-500 focus:ring-0"
+          class="w-full focus:border-orange-500 focus:ring-0 disabled:bg-gray-500"
           ref="inputSearch"
           @change="handleInputChange"
           @keyup.enter="handleSubmit"
           v-model="searchFor"
           @keydown="handleInputKeyDown"
         />
-        <button @click="handleSubmit" class="btn-square btn">
+        <button
+          @click="handleSubmit"
+          :disabled="disabled"
+          class="btn-square btn"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-6 w-6"

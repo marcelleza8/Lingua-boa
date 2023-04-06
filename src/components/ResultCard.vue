@@ -86,7 +86,9 @@ export default defineComponent({
         </div>
       </div>
     </div>
-    <!-- <span class="mt-4 block">{{ result.significados.join(", ") }}</span> -->
+    <div class="space-x-1 mt-4 ">
+      <span class="border border-supernova-700 rounded-md px-2 py-1" v-for="s in result.significados">{{ s.palavra }}</span>
+    </div>
     <!-- <h3 class="mt-4 text-2xl font-bold">Significado e definição:</h3> -->
     <!-- <MeanigList mean="{response}" /> -->
     <!-- <h3 class="mt-4 text-2xl font-bold">Exemplo:</h3> -->

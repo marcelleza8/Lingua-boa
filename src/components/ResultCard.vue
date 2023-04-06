@@ -69,7 +69,7 @@ export default defineComponent({
               <h3 class="text-lg font-bold">Compartilhar esse verbete</h3>
               <p class="space-y-7 py-4">
                 <div>
-                  <a target="_blank" :href="`https://wa.me?text=Veja só o que a paravra *${result.palavra}* significa em *Nheengatu*: ${base_url}/palavra/${result.slug}`" class=" inline-block border border-green-300 p-2 rounded-full cursor-pointer">
+                  <a target="_blank" :href="`https://wa.me?text=Veja só o que a palavra *${result.palavra}* significa em *Nheengatu*: ${base_url}/palavra/${result.slug}`" class=" inline-block border border-green-300 p-2 rounded-full cursor-pointer">
                     <WhatsappIcon class="h-10 w-10 " />
                   </a>
                 </div>

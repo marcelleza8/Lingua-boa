@@ -19,8 +19,6 @@ export default defineComponent({
 <template>
   <!-- <Sidebar /> -->
   <MainMenu />
-  <div class="mb-9 md:mb-0 md:mt-10">
-    <RouterView />
-  </div>
+  <RouterView />
   <TailwindDebugBar v-if="dev" />
 </template>

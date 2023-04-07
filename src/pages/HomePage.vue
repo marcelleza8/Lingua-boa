@@ -38,10 +38,10 @@ export default defineComponent({
 });
 </script>
 <template>
-  <div class="container mx-auto grid h-screen place-items-center px-3">
-    <Header @searchFor="findWord" :disabled="disableSearch" class="w-full" />
-    <div class="pt-12">
+  <div class="flex h-[86vh] flex-col items-stretch">
+    <div class="grow overflow-x-auto">
       <ResultList :items="results" />
     </div>
+    <Header @searchFor="findWord" :disabled="disableSearch" class="w-full" />
   </div>
 </template>

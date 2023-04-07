@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, onMounted } from "vue";
 import LetrasWrapper from "./LetrasWrapper.vue";
 
 export default defineComponent({
@@ -17,8 +17,14 @@ export default defineComponent({
 
     const includeLetter = (e: any) => {
       searchFor.value += e;
-      if (inputSearch.value) inputSearch.value.focus();
+      if (inputSearch.value) inputSearch.value.autofocus = true;
     };
+
+    onMounted(() => {
+      setTimeout(() => {
+        inputSearch.value?.focus();
+      }, 300);
+    });
 
     return {
       handleInputChange,
